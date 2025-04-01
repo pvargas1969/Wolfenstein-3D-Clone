@@ -10,7 +10,8 @@ class PlayerAttribs:
         self.ammo = PLAYER_INIT_AMMO
         self.weapons = {ID.KNIFE_0: 1, ID.PISTOL_0: 0, ID.RIFLE_0: 0}
         self.weapon_id = ID.KNIFE_0
-        self.num_level = 0
+        # self.num_level = 0
+        self.num_level = 2
 
     def update(self, player):
         self.health = player.health
@@ -126,35 +127,36 @@ class Player(Camera):
         self.tile_pos = int(self.position.x), int(self.position.z)
 
     def pick_up_item(self):
-        if self.tile_pos not in self.item_map:
-            return None
+        pass
+        # if self.tile_pos not in self.item_map:
+        #     return None
 
-        item = self.item_map[self.tile_pos]
-        #
-        if item.tex_id == ID.MED_KIT:
-            self.health += ITEM_SETTINGS[ID.MED_KIT]['value']
-            self.health = min(self.health, MAX_HEALTH_VALUE)
-        #
-        elif item.tex_id == ID.AMMO:
-            self.ammo += ITEM_SETTINGS[ID.AMMO]['value']
-            self.ammo = min(self.ammo, MAX_AMMO_VALUE)
-        #
-        elif item.tex_id == ID.PISTOL_ICON:
-            if not self.weapons[ID.PISTOL_0]:
-                self.weapons[ID.PISTOL_0] = 1
-                self.switch_weapon(weapon_id=ID.PISTOL_0)
-        #
-        elif item.tex_id == ID.RIFLE_ICON:
-            if not self.weapons[ID.RIFLE_0]:
-                self.weapons[ID.RIFLE_0] = 1
-                self.switch_weapon(weapon_id=ID.RIFLE_0)
-        #
-        elif item.tex_id == ID.KEY:
-            self.key = 1
-        #
-        self.play(self.sound.pick_up[item.tex_id])
-        #
-        del self.item_map[self.tile_pos]
+        # item = self.item_map[self.tile_pos]
+        # #
+        # if item.tex_id == ID.MED_KIT:
+        #     self.health += ITEM_SETTINGS[ID.MED_KIT]['value']
+        #     self.health = min(self.health, MAX_HEALTH_VALUE)
+        # #
+        # elif item.tex_id == ID.AMMO:
+        #     self.ammo += ITEM_SETTINGS[ID.AMMO]['value']
+        #     self.ammo = min(self.ammo, MAX_AMMO_VALUE)
+        # #
+        # elif item.tex_id == ID.PISTOL_ICON:
+        #     if not self.weapons[ID.PISTOL_0]:
+        #         self.weapons[ID.PISTOL_0] = 1
+        #         self.switch_weapon(weapon_id=ID.PISTOL_0)
+        # #
+        # elif item.tex_id == ID.RIFLE_ICON:
+        #     if not self.weapons[ID.RIFLE_0]:
+        #         self.weapons[ID.RIFLE_0] = 1
+        #         self.switch_weapon(weapon_id=ID.RIFLE_0)
+        # #
+        # elif item.tex_id == ID.KEY:
+        #     self.key = 1
+        # #
+        # self.play(self.sound.pick_up[item.tex_id])
+        # #
+        # del self.item_map[self.tile_pos]
 
     def interact_with_door(self):
         pos = self.position + self.forward
@@ -219,8 +221,8 @@ class Player(Camera):
                 PLAYER_SIZE if dz > 0 else -PLAYER_SIZE if dz < 0 else 0)
                 )
         )
-        # check doors
-        if int_pos in self.door_map:
-            return self.door_map[int_pos].is_closed
+        # # check doors
+        # if int_pos in self.door_map:
+        #     return self.door_map[int_pos].is_closed
         # check walls
         return int_pos in self.wall_map

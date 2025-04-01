@@ -48,32 +48,32 @@ class LevelMap:
                     # ceiling  hash map
                     self.ceil_map[(ix, iz)] = self.get_id(gid)
 
-        # get doors
-        door_objects = self.tiled_map.get_layer_by_name('doors')
-        for obj in door_objects:
-            # door hash map
-            pos = int(obj.x / TEX_SIZE), int(obj.y / TEX_SIZE)
-            door = Door(self, tex_id=self.get_id(obj.gid), x=pos[0], z=pos[1])
-            self.door_map[pos] = door
+        # # get doors
+        # door_objects = self.tiled_map.get_layer_by_name('doors')
+        # for obj in door_objects:
+        #     # door hash map
+        #     pos = int(obj.x / TEX_SIZE), int(obj.y / TEX_SIZE)
+        #     door = Door(self, tex_id=self.get_id(obj.gid), x=pos[0], z=pos[1])
+        #     self.door_map[pos] = door
 
-        # get items
-        items = self.tiled_map.get_layer_by_name('items')
-        for obj in items:
-            # item hash map
-            pos = int(obj.x / TEX_SIZE), int(obj.y / TEX_SIZE)
-            item = Item(self, tex_id=self.get_id(obj.gid), x=pos[0], z=pos[1])
-            self.item_map[pos] = item
+        # # get items
+        # items = self.tiled_map.get_layer_by_name('items')
+        # for obj in items:
+        #     # item hash map
+        #     pos = int(obj.x / TEX_SIZE), int(obj.y / TEX_SIZE)
+        #     item = Item(self, tex_id=self.get_id(obj.gid), x=pos[0], z=pos[1])
+        #     self.item_map[pos] = item
 
-        # get npc
-        npc = self.tiled_map.get_layer_by_name('npc')
-        for obj in npc:
-            # npc map
-            pos = int(obj.x / TEX_SIZE), int(obj.y / TEX_SIZE)
-            npc = NPC(self, tex_id=self.get_id(obj.gid), x=pos[0], z=pos[1])
-            self.npc_map[pos] = npc
-            self.npc_list.append(npc)
+        # # get npc
+        # npc = self.tiled_map.get_layer_by_name('npc')
+        # for obj in npc:
+        #     # npc map
+        #     pos = int(obj.x / TEX_SIZE), int(obj.y / TEX_SIZE)
+        #     npc = NPC(self, tex_id=self.get_id(obj.gid), x=pos[0], z=pos[1])
+        #     self.npc_map[pos] = npc
+        #     self.npc_list.append(npc)
 
         # update player data
         self.eng.player.wall_map = self.wall_map
-        self.eng.player.door_map = self.door_map
-        self.eng.player.item_map = self.item_map
+        # self.eng.player.door_map = self.door_map
+        # self.eng.player.item_map = self.item_map
